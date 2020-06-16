@@ -223,4 +223,5 @@ task('deploy', () => ghPages.publish('dist', function(err) {}));
 // task('deploy', () => src('./dist/**/*').pipe(ghPages()));
 
 exports.serve = serve;
-exports.build = g
+exports.build = build;
+exports.default = build;
