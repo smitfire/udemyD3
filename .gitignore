@@ -114,6 +114,7 @@ bower_components
 *.sql
 *.sql.gz
 .env
+*.zip
 # System Files
 .DS_Store
 Thumbs.db
