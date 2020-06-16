@@ -24,8 +24,6 @@ function ghPages() {
     .pipe($.ghPages());
 }
 
-const deploy = series(build, ghPages);
-
 function styles() {
   return src('app/styles/*.scss', {
     sourcemaps: !isProd,
@@ -159,6 +157,8 @@ const build = series(
   ),
   measureSize
 );
+
+const deploy = series(build, ghPages);
 
 function startAppServer() {
   server.init({
