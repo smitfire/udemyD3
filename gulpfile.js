@@ -219,9 +219,10 @@ if (isDev) {
   serve = series(build, startDistServer);
 }
 
-task('deploy', () => ghPages.publish('dist', function(err) {}));
-// task('deploy', () => src('./dist/**/*').pipe(ghPages()));
-
+const options =  {
+  remote: 'upstream'
+}
+task('deploy', () => ghPages.publish('dist', options, function(err) {}));
 exports.serve = serve;
 exports.build = build;
 exports.default = build;
