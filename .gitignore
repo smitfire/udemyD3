@@ -111,7 +111,9 @@ bower_components
 /dist
 /.tmp
 .publish
-
+*.sql
+*.sql.gz
+.env
 # System Files
 .DS_Store
 Thumbs.db

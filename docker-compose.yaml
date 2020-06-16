@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: devdb
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+    volumes:
+      - .:/15d3proj
+    image: f1db:tag
+
+volumes:
+  db-data:
