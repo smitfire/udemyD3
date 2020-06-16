@@ -1,5 +1,5 @@
 // generated on 2020-06-16 using generator-webapp 4.0.0-8
-const { src, dest, watch, series, parallel, lastRun } = require('gulp');
+const { src, dest, watch, series, parallel, lastRun, task } = require('gulp');
 const gulpLoadPlugins = require('gulp-load-plugins');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
@@ -18,11 +18,7 @@ const port = argv.port || 9000;
 const isProd = process.env.NODE_ENV === 'production';
 const isTest = process.env.NODE_ENV === 'test';
 const isDev = !isProd && !isTest;
-
-function ghPages() {
-  return src('dist/**/*')
-    .pipe($.ghPages());
-}
+const ghPages = require('gh-pages');
 
 function styles() {
   return src('app/styles/*.scss', {
@@ -158,8 +154,6 @@ const build = series(
   measureSize
 );
 
-const deploy = series(build, ghPages);
-
 function startAppServer() {
   server.init({
     notify: false,
@@ -225,7 +219,8 @@ if (isDev) {
   serve = series(build, startDistServer);
 }
 
+task('deploy', () => ghPages.publish('dist', function(err) {}));
+// task('deploy', () => src('./dist/**/*').pipe(ghPages()));
+
 exports.serve = serve;
-exports.build = build;
-exports.default = build;
-exports.deploy = deploy;
+exports.build = g
